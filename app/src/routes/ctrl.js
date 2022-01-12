@@ -1,3 +1,4 @@
+const User = require("../models/User")
 const UserStorage = require("../models/UserStorage")
 
 const output = {
@@ -7,19 +8,8 @@ const output = {
 
 const process = {
   login: (req, res) => {
-    const { id, pw } = req.body
-    const response = {}
-    const users = UserStorage.getUsers("id", "pw")
-    const idx = users.id.indexOf(id)
-    if (idx > -1) {
-      if (users.pw[idx] === pw) {
-        response.success = true
-        return res.json(response)
-      }
-    }
-
-    response.success = false
-    response.message = "로그인에 실패하였습니다"
+    const user = new User(req.body)
+    const response = user.login()
     return res.json(response)
   },
 }
