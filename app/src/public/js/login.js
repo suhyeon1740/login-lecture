@@ -2,11 +2,13 @@
 
 const id = document.querySelector("#id"),
   pw = document.querySelector("#pw"),
-  button = document.querySelector("button")
+  button = document.querySelector("button"),
+  form = document.querySelector(".login-form")
 
-button.addEventListener("click", login)
+form.addEventListener("submit", login)
 
-function login() {
+function login(e) {
+  e.preventDefault()
   const req = {
     id: id.value,
     pw: pw.value,
