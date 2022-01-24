@@ -27,6 +27,7 @@ function register(e) {
     .then((res) => res.json())
     .then((result) => {
       if (result.success == false) {
+        if (result.err) return alert(result.err)
         alert(result.message)
         return
       }

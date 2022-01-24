@@ -6,8 +6,8 @@ class UserStorage {
     return new Promise((resolve, reject) => {
       const query = "SELECT * FROM users WHERE id = ?"
       db.query(query, [id], (err, rows) => {
-        if (err) reject(err)
-        resolve(rows[0])
+        if (err) reject(`${err}`)
+        else resolve(rows[0])
       })
     })
   }
@@ -15,7 +15,7 @@ class UserStorage {
   static async save(userInfo) {
     return new Promise((resolve, reject) => {
       const { id, pw, name } = userInfo
-      const query = "INSERT INTO users(id,pw,name) VALUES(?,?,?)"
+      const query = "INSERT INTO abc(id,pw,name) VALUES(?,?,?)"
       db.query(query, [id, pw, name], (err, rows) => {
         if (err) reject(`${err}`)
         resolve({ success: true })

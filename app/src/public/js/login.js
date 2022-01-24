@@ -7,8 +7,10 @@ const id = document.querySelector("#id"),
 
 form.addEventListener("submit", login)
 
-function login(e) { 
+function login(e) {
   e.preventDefault()
+  if (!id.value) return alert("아이디를 입력하세요")
+  if (!pw.value) return alert("비밀번호를 입력하세요")
   const req = {
     id: id.value,
     pw: pw.value,
@@ -21,8 +23,9 @@ function login(e) {
     body: JSON.stringify(req),
   })
     .then((res) => res.json())
-    .then((result) => {
+    .then((result) => { 
       if (result.success == false) {
+        if (result.err) return alert(result.err)
         alert(result.message)
         return
       }
